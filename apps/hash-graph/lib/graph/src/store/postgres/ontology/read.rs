@@ -63,7 +63,7 @@ where
     async fn read(
         &self,
         filter: &Filter<T>,
-        temporal_axes: &QueryTemporalAxes,
+        temporal_axes: Option<&QueryTemporalAxes>,
     ) -> Result<Vec<T>, QueryError> {
         let base_url_path = <T::QueryPath<'static> as OntologyQueryPath>::base_url();
         let version_path = <T::QueryPath<'static> as OntologyQueryPath>::version();
