@@ -48,7 +48,17 @@ export const ReactAppGenerator: NextPageWithLayout = () => {
 
   const updateDependencies = () => {
     setLoadingPreview(true);
-    initContainer(dependencies);
+
+    axios
+      .post("api/block-generator/install-dependencies", {
+        containerId,
+        dependencies: missingDependencies,
+      })
+      .then(() => {
+        setInstalledDependencies(dependencies);
+        setLoadingPreview(false);
+        setIframeKey(iframeKey + 1);
+      });
   };
 
   const updatePreview = (val: string) => {
@@ -87,7 +97,7 @@ export const ReactAppGenerator: NextPageWithLayout = () => {
             if (responseDependencies?.[0]) {
               setDependencies(
                 responseDependencies[0]
-                  .split(" ")
+                  .split(", ")
                   .map((dependency) => dependency.replaceAll("'", ""))
                   .filter(
                     (dependency) =>
@@ -160,7 +170,7 @@ export const ReactAppGenerator: NextPageWithLayout = () => {
       {missingDependencies.length ? (
         <Box mt={3}>
           <Typography variant="h5" mb={1}>
-            Missing Dependencies: {missingDependencies.join(" ")}
+            Missing Dependencies: {missingDependencies.join(", ")}
           </Typography>
           <Button
             onClick={() => updateDependencies()}
