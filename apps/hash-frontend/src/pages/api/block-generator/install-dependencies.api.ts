@@ -6,14 +6,8 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   await runCommand({
-    cmd: "docker",
-    args: [
-      "exec",
-      req.body.containerId,
-      "sh",
-      "-c",
-      `npm install ${req.body.dependencies.join(" ")}`,
-    ],
+    cmd: "yarn",
+    args: ["add", `${req.body.dependencies.join(" ")}`],
     cwd: PREVIEW_PROJECT_PATH,
   });
 

@@ -137,3 +137,6 @@ seed-users.json
 
 # SARIF files
 *.sarif
+
+# Generated block prototype
+**/generated-block
