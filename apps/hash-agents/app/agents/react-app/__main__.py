@@ -52,8 +52,7 @@ def main(input: Input) -> Output:
         ),
         SystemMessage(
             content=(
-                "Generate a react component using MUI components and export it as"
-                " default."
+                "Generate a react component using MUI components."
             )
         ),
         SystemMessage(
@@ -70,6 +69,11 @@ def main(input: Input) -> Output:
                 " The message you return should have the following format:"
                 " ```jsx\n{code...}\n```\nDependencies: [{dependency1}, {dependency2},"
                 " ...]."
+            )
+        ),
+        SystemMessage(
+            content=(
+                "Name the component App and do NOT export it as a default. The component should be exported in the following way: `export const App = () => { ... }`."
             )
         ),
     ]
@@ -99,9 +103,9 @@ if __name__ == "HASH":
 
 if __name__ == "__main__":
     """This is used when running the agent from the command line"""
-    from ... import setup
+    from app.prerun import setup_prerun
 
-    setup("dev")
+    setup_prerun("dev")
 
     logger.info("Describe your application:")
     cli_input = input("")

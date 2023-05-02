@@ -27,7 +27,7 @@ export const ReactAppGenerator: NextPageWithLayout = () => {
 
   const initContainer = (dependencies?: string[]) => {
     axios
-      .post("api/block-generator/initialize-container", { dependencies })
+      .post("api/block-generator/initialize-preview", { dependencies })
       .then((res) => {
         setContainerId(res.data);
         setLoadingPreview(false);

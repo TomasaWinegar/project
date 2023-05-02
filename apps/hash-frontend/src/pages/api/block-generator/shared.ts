@@ -1,6 +1,6 @@
 import { spawn } from "child_process";
 
-export const PREVIEW_PROJECT_PATH = "src/pages/block-generator/preview";
+export const PREVIEW_PROJECT_PATH = "generated-block";
 
 export type CommandCallback = (data: any) => void;
 

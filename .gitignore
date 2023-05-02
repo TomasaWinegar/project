@@ -141,3 +141,6 @@ seed-users.json
 # Turborepo
 .turbo/
 out/
+
+# Generated block prototype
+**/generated-block
